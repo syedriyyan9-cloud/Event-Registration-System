@@ -7,4 +7,5 @@
         <p><strong>Last Login:</strong> {{ user.last_login|date:"F j, Y H:i" }}</p>
     </div>
 </div>
+<p><a href="{% url 'events:create_event' %}">create events</a></p>
 {% endblock %}
