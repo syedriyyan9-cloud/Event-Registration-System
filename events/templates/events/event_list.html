@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if event %}
+{% for e in event %}
+<div>
+    <p><strong>Event Name: </strong>{{e.event_name}}</p>
+    <p><strong>Event Venue: </strong>{{e.event_venue}}</p>
+    <p><strong>Event Details: </strong>{{e.event_details}}</p>
+    <p><strong>Event Date: </strong>{{e.event_date}}</p>
+    <p><strong>Event Capacity: </strong>{{e.event_capacity}} People</p>
+    <p><a href="{% url 'events:edit_event' e.id %}">Edit Event</a></p>
+    <p><a href="{% url 'events:delete_event' e.id %}">Delete Event</a></p>
+</div>
+{% endfor %}
+{% else %}
+<p>You do not have any events. <a href="{% url 'events:create_event' %}">Register event</a></p>
+{% endif %}
+{% endblock %}

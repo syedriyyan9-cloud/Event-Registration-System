@@ -34,4 +34,15 @@ def edit_event(request, pk):
         form = EventForm(instance=event)
     return render(request, 'events/edit_event.html', {'form':form, 'event':event})
 
+@login_required
+def event_list(request):
+    '''display list of events user has'''
+    event = Events.objects.filter(user = request.user)
+    return render(request, 'events/event_list.html',{'event':event})
 
+@login_required
+def delete_event(request, pk):
+    '''delete event'''
+    event = Events.objects.filter(id=pk)
+    event.delete()
+    return redirect('events:event_list')
